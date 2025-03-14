@@ -1,6 +1,0 @@
-4 2 3
-Empty B A Empty
-A Empty Empty B
-1 2
-2 3
-2 4
