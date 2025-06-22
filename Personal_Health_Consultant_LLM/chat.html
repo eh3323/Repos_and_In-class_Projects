@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对话界面</title>
+    <style>
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 32px 24px 16px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        h1 {
+            margin: 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d2d2d;
+        }
+        .chat-box {
+            flex: 1 1 auto;
+            height: 500px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px 16px;
+            overflow-y: auto;
+        }
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-box::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,.15);
+            border-radius: 3px;
+        }
+        .message {
+            max-width: 75%;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            border-radius: 24px;
+            line-height: 1.5;
+            font-size: 15px;
+            word-break: break-word;
+        }
+        .user-message {
+            margin-left: auto;
+            background: #4f8cff;
+            color: #fff;
+            border-bottom-right-radius: 10px;
+        }
+        .ai-message {
+            margin-right: auto;
+            background: #e5e7eb;
+            color: #111827;
+            border-bottom-left-radius: 10px;
+        }
+        .input-row {
+            display: flex;
+            gap: 12px;
+        }
+        input[type="text"] {
+            flex: 1 1 auto;
+            padding: 14px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+        input[type="text"]:focus {
+            border-color: #4f8cff;
+            box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.15);
+        }
+        button {
+            min-width: 96px;
+            padding: 12px 24px;
+            background: #4f8cff;
+            border: none;
+            color: #fff;
+            border-radius: 14px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+        }
+        button:hover {
+            background: #396ee6;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>个人健康管理助手</h1>
+        <div class="chat-box" id="chatBox"></div>
+         <!-- 文件上传区域 -->
+        <div style="margin-bottom: 10px;">
+            <input type="file" id="fileInput" accept=".xls,.xlsx">
+        </div>
+        <div>
+            <input type="text" id="userInput" placeholder="输入您的问题...">
+            <button onclick="sendMessage()">发送</button>
+        </div>
+    </div>
+    <script>
+        // 页面加载后初始化提示
+        window.addEventListener('DOMContentLoaded', () => {
+            const chatBox = document.getElementById('chatBox');
+            const initMsg = document.createElement('div');
+            initMsg.className = 'message ai-message';
+            initMsg.textContent = '请上传您的资料';
+            chatBox.appendChild(initMsg);
+        });
+
+        // 处理文件选择并在对话框显示效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const chatBox = document.getElementById('chatBox');
+                    const fileMsg = document.createElement('div');
+                    fileMsg.className = 'message user-message';
+                    fileMsg.textContent = `已选择文件: ${file.name}`;
+                    chatBox.appendChild(fileMsg);
+                }
+            });
+        });
+        function sendMessage() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const userInput = document.getElementById('userInput').value;
+
+            // 如果既没有文字也没有文件，直接返回
+            if (!file && !userInput.trim()) return;
+
+            const chatBox = document.getElementById('chatBox');
+
+            // ------- 处理文件上传 -------
+            if (file) {
+                const fileMsg = document.createElement('div');
+                fileMsg.className = 'message user-message';
+                fileMsg.textContent = `上传文件: ${file.name}`;
+                chatBox.appendChild(fileMsg);
+
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('userId', localStorage.getItem('userId'));
+
+                fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(r => r.json())
+                .then(d => {
+                    const respMsg = document.createElement('div');
+                    respMsg.className = 'message ai-message';
+                    respMsg.textContent = d.success ? '文件上传成功' : (d.error || '文件上传失败');
+                    chatBox.appendChild(respMsg);
+                })
+                .catch(() => {
+                    const err = document.createElement('div');
+                    err.className = 'message ai-message';
+                    err.textContent = '文件上传出错';
+                    chatBox.appendChild(err);
+                });
+
+                // 清空文件选择
+                fileInput.value = '';
+            }
+
+            // ------- 处理文本提问 -------
+            if (userInput.trim()) {
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user-message';
+                userMessage.textContent = userInput;
+                chatBox.appendChild(userMessage);
+
+                fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: userInput })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const aiMessage = document.createElement('div');
+                    aiMessage.className = 'message ai-message';
+                    aiMessage.textContent = data.answer;
+                    chatBox.appendChild(aiMessage);
+                })
+                .catch(() => {
+                    const err = document.createElement('div');
+                    err.className = 'message ai-message';
+                    err.textContent = '获取回答失败';
+                    chatBox.appendChild(err);
+                });
+
+                document.getElementById('userInput').value = '';
+            }
+        }
+    </script>
+</body>
+</html> 
