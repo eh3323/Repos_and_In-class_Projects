@@ -1,4 +1,4 @@
-<img width="573" alt="image" src="https://github.com/user-attachments/assets/cfa653a1-7ca9-444a-a41f-0bd0c562a1a3" />Here are some meaningful projects that I have done so far. I'll list brief descriptions for each of the projects down below. Codes in detail can be viewed in corresponding files.
+Here are some meaningful projects that I have done so far. I'll list brief descriptions for each of the projects down below. Codes in detail can be viewed in corresponding files.
 1. DL_proj
 
 This is just a really classical image identification, specifically cloth identification, reproduction that I have done to deepen my understanding toward deep learning and how exactly it works on code. Through this project I learned some technical skills on Pytorch. 
