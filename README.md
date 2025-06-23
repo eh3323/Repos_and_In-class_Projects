@@ -1,11 +1,11 @@
 Here are some meaningful projects that I have done so far. I'll list brief descriptions for each of the projects down below. Codes in detail can be viewed in corresponding files.
 1. DL_proj
 
-This is just a really classical image identification, specifically cloth identification, reproduction that I have done to deepen my understanding toward deep learning and how exactly it works on code. Through this project I learned some technical skills on Pytorch. 
+A really classical image identification, specifically cloth identification, reproduction that I have done to deepen my understanding toward deep learning and how exactly it works on code. Through this project I learned some technical skills on Pytorch. 
 
 2. CSCI-UA 472 proj1
 
-I Write two programs that solves the Best Independent Set problem. I used two approaches: The first used iterative deepening; The second used simple hill climbing with random restart.
+Wrote two programs that solves the Best Independent Set problem. I used two approaches: The first used iterative deepening; The second used simple hill climbing with random restart.
 The “Best Independent Set” problem is defined as follows:
 Input: An undirected graph G, in which each vertex is marked by a positive value ;
 and a target value T.
@@ -23,6 +23,9 @@ Used Davis-Putnam algorithm to to solve a generalization of the 15 puzzle, or sl
 <img width="224" alt="image" src="https://github.com/user-attachments/assets/2a0e8496-b2f6-4e09-9965-d6d15eeabc4a" />
 
 4. CSCI-UA 472 reinforcement_learning
+
+Used reinforcement learning to learn the correct policy in a Markov Decision Process.The input to the program is a Markov Decision Process. The
+program will learn what to do through experimentation with a random restart.
 
 
 
