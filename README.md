@@ -27,13 +27,19 @@ Used Davis-Putnam algorithm to to solve a generalization of the 15 puzzle, or sl
 Used reinforcement learning to learn the correct policy in a Markov Decision Process.The input to the program is a Markov Decision Process. The
 program will learn what to do through experimentation with a random restart.
 
-
-
 5. CSCI-UA 472 Text_Classification_Naive_Bayes
 
-8. Personal_Health_Consultant_LLM
+Used the Na¨ıve Bayes method to build up a classifier for text from training data, and use a test set to evaluate the quality of the classifier. The classifier can based on text descriptions to classify if the person in the text belongs to Government, Music, Writing field.
 
-9. RLHF_proj
+6. Personal_Health_Consultant_LLM
 
-10. Sppech_Graph
+Build up a full-stack Website: wwww.longevityllmpumc.com.(with Generative AI assiatance). The Website is used for giving personal health recommendation based on the person's vectorized protein expression and basic information. The key technique is front-end and back-end designing, API calling, and Prompt Engineering. The main prediction is based on a ML algorithm, which is not written by me. 
+
+7. RLHF_proj
+
+Used PPO algorithm building up two models(One actor, One critic) for translating a series of number into Capital letter Chinese and Lower case Chinese in terms of numbers. Used GPT-2 as the base model by locally deploy.
+
+8. Sppech_Graph
+
+This is a simplified Reproduction of the software from paper: Graph analysis of dream reports is especially informative about psychosis. Sci. Rep. 4. It is used for extracting the semantic complexity of any sentences. We used this as a perspective to build up a ML regression model for predicting if the patient has Alzheimer and cognitive impairment. 
 
