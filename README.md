@@ -1,9 +1,22 @@
 Here are some meaningful projects that I have done so far. I'll list brief descriptions for each of the projects down below. Codes in detail can be viewed in corresponding files.
-1. DL_proj
+1. Sppech_Graph
 
-A really classical image identification, specifically cloth identification, reproduction that I have done to deepen my understanding toward deep learning and how exactly it works on code. Through this project I learned some technical skills on Pytorch. 
+This is a simplified Reproduction of the software from paper: Graph analysis of dream reports is especially informative about psychosis. Sci. Rep. 4. It is used for extracting the semantic complexity of any sentences. We used this as a perspective to build up a ML regression model for predicting if the patient has Alzheimer and cognitive impairment. 
+Example of a sentence:
+<img width="744" alt="image" src="https://github.com/user-attachments/assets/04742aa2-c184-4663-a1aa-3824e7ead80f" />
 
-2. CSCI-UA 472 proj1
+{'LCC': 30,
+ 'LSC': 14,
+ 'degree_average': 2.066666666666667,
+ 'degree_std': 0.8919392106839769,
+ 'num_2_cycles': 0,
+ 'num_3_cycles': 0,
+ 'number_of_edges': 31,
+ 'number_of_nodes': 30,
+ 'number_of_self_loops': 0,
+ 'reciprocal_edge_pairs': []}
+ 
+ 2. CSCI-UA 472 proj1
 
 Wrote two programs that solves the Best Independent Set problem. I used two approaches: The first used iterative deepening; The second used simple hill climbing with random restart.
 The “Best Independent Set” problem is defined as follows:
@@ -39,7 +52,8 @@ Build up a full-stack Website: wwww.longevityllmpumc.com.(with Generative AI ass
 
 Used PPO algorithm building up two models(One actor, One critic) for translating a series of number into Capital letter Chinese and Lower case Chinese in terms of numbers. Used GPT-2 as the base model by locally deploy.
 
-8. Sppech_Graph
+8. DL_proj
 
-This is a simplified Reproduction of the software from paper: Graph analysis of dream reports is especially informative about psychosis. Sci. Rep. 4. It is used for extracting the semantic complexity of any sentences. We used this as a perspective to build up a ML regression model for predicting if the patient has Alzheimer and cognitive impairment. 
+A really classical image identification, specifically cloth identification, reproduction that I have done to deepen my understanding toward deep learning and how exactly it works on code. Through this project I learned some technical skills on Pytorch.
+
 
