@@ -18,7 +18,8 @@ In Graph 2, with T = 16 there are two solutions: { G,H,K } and { H,I }.
 
 3. CSCI-UA 472 puzzle_solving
 
-Used Davis-Putnam algorithm to to solve a generalization of the 15 puzzle, or sliding puzzle. 
+Used Davis-Putnam algorithm to to solve a generalization of the 15 puzzle, or sliding puzzle. Specifically, each element of the puzzle is transfered into the propositional calculus and using a SAT-solver.
+
 <img width="224" alt="image" src="https://github.com/user-attachments/assets/2a0e8496-b2f6-4e09-9965-d6d15eeabc4a" />
 
 4. CSCI-UA 472 reinforcement_learning
